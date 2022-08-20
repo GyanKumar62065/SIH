@@ -1,6 +1,7 @@
 package com.example.sih.Admin;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -12,6 +13,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import com.example.sih.LoginPage;
 import com.example.sih.R;
 import com.google.android.material.navigation.NavigationView;
 
@@ -64,9 +66,13 @@ public class Admin extends AppCompatActivity {
                 }
                 else if(itemId == R.id.logoutAdmin)
                 {
+                    SharedPreferences sharedPreferences = getSharedPreferences("TOKEN_FILE" , MODE_PRIVATE);
+                    sharedPreferences.edit().remove("TOKEN_KEY");
+                    sharedPreferences.edit().remove("USER_ID");
+                    Intent intent = new Intent(Admin.this , LoginPage.class);
+                    startActivity(intent);
 
                 }
-
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }

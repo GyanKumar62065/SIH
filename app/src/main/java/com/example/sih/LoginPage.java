@@ -19,7 +19,6 @@ import com.example.sih.model.LoginRequest;
 import com.example.sih.model.UsersResponse;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -58,25 +57,15 @@ public class LoginPage extends AppCompatActivity {
                 emailId = username.getText().toString();
                 passwordTxt = password.getText().toString();
                 login(new LoginRequest(emailId, passwordTxt)); // Pssing username and password
-//                goToActivity();
-                startActivity(new Intent(LoginPage.this, Admin.class));
+                editor.putString("EMAIL_ID" , emailId);
+                editor.apply();
+
+//                startActivity(new Intent(LoginPage.this, Admin.class));
             }
         });
     }
 
-    private void goToActivity() {
-        if (userType.equals("admin")) {
-            startActivity(new Intent(LoginPage.this, Admin.class));
-        } else if (userType.equals("affiliator")) {
-            startActivity(new Intent(LoginPage.this, Affiliator.class));
-        } else if (userType.equals("employee")) {
-            startActivity(new Intent(LoginPage.this, Employee.class));
-        } else if (userType.equals("college")) {
-            startActivity(new Intent(LoginPage.this, Admin.class));
-        } else {
-            Toast.makeText(LoginPage.this, "Worng User", Toast.LENGTH_SHORT).show();
-        }
-    }
+
 
     public void login(LoginRequest loginRequest) {
         Call<LoginRequest> call = Repositry.getInstance().getCommentsService().login(loginRequest);
@@ -86,16 +75,12 @@ public class LoginPage extends AppCompatActivity {
                 Log.e("GET_TOKEN", "" + response.body().getToken());
 
                 token = response.body().getToken();
-                getUserInfo("xyz@gmail.com", response.body().getToken());
-//                getUserInfo("1", response.body().getToken());
-
+                getUserInfo(emailId , response.body().getToken());
                 //*******************************
                 // Passing Token into ProfileAdminFragment
 
-
                 editor.putString("TOKEN_KEY", token);
                 editor.apply();
-
 
                 //*******************************
 
@@ -119,7 +104,8 @@ public class LoginPage extends AppCompatActivity {
                 editor.putString("USER_ID", userId);
                 editor.apply();
                 //************
-                userType = String.valueOf(response.body().getAuthorities().get(0).getAuthority()).toLowerCase(Locale.ROOT);
+                userType = response.body().getAuthorities().get(0).getAuthority().toLowerCase();
+                goToActivity(userType);
             }
 
             @Override
@@ -127,6 +113,20 @@ public class LoginPage extends AppCompatActivity {
                 Toast.makeText(LoginPage.this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void goToActivity(String userType) {
+        if (userType.equals("admin")) {
+            startActivity(new Intent(LoginPage.this, Admin.class));
+        } else if (userType.equals("affiliator")) {
+            startActivity(new Intent(LoginPage.this, Affiliator.class));
+        } else if (userType.equals("employee")) {
+            startActivity(new Intent(LoginPage.this, Employee.class));
+        } else if (userType.equals("college")) {
+            startActivity(new Intent(LoginPage.this, Admin.class));
+        } else {
+            Toast.makeText(LoginPage.this, "Worng User", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
@@ -152,5 +152,15 @@ public class LoginPage extends AppCompatActivity {
     public void register(View view) {
         Intent intent = new Intent(this, RegisterPage.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        Intent a = new Intent(Intent.ACTION_MAIN);
+        a.addCategory(Intent.CATEGORY_HOME);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(a);
+//        super.onBackPressed();
     }
 }

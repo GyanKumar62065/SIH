@@ -73,9 +73,10 @@ public class ProfileAdminFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile_admin, container, false);
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("TOKEN_FILE", Context.MODE_PRIVATE);
         String token = sharedPreferences.getString("TOKEN_KEY", "");
+        String emailId = sharedPreferences.getString("EMAIL_ID", "");
         adminName = view.findViewById(R.id.adminName);
         adminDetails = view.findViewById(R.id.adminDetails);
-        getUserInfo("xyz@gmail.com", token);
+        getUserInfo(emailId, token);
 
         return view;
     }

@@ -31,4 +31,7 @@ public interface Service {
     @GET("user/{id}/employee")
     Call<List<UsersResponse>> getEmployeeUserData( @Path("id") String cnadidateID,@Header("Authorization") String authorization);
 
+    @GET("user/{id}/affiliator")
+    Call<List<UsersResponse>> getAffiliatorUserData( @Path("id") String cnadidateID,@Header("Authorization") String authorization);
+
 }
