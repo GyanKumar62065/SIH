@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -24,6 +25,9 @@ public class Admin extends AppCompatActivity {
     Toolbar toolbar;
     String token;
 
+    TextView profileName , emailId;
+    SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +45,12 @@ public class Admin extends AppCompatActivity {
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
-        loadFragment(new HomeAdminFragment());
+         sharedPreferences = getSharedPreferences("TOKEN_FILE" , MODE_PRIVATE);
+
+
+
+
+        loadFragment(new HomeAdminFragment() , "HOME_FRAGMENT");
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -50,23 +59,23 @@ public class Admin extends AppCompatActivity {
                 int itemId = item.getItemId();
                 if(itemId == R.id.adminHome)
                 {
-                    loadFragment(new HomeAdminFragment());
+                    loadFragment(new HomeAdminFragment() , "HOME_FRAGMENT");
                 }
                 else if(itemId == R.id.adminProfile)
                 {
-                    loadFragment(new ProfileAdminFragment());
+                    loadFragment(new ProfileAdminFragment() , "PROFILE_FRAGMENT");
                 }
                 else if(itemId == R.id.createEmployee)
                 {
-                    loadFragment(new EmployeeAdminFragment());
+                    loadFragment(new EmployeeAdminFragment() , "EMPLOYEE_FRAGMENT");
                 }
                 else if(itemId == R.id.createAffliator)
                 {
-                    loadFragment(new AffiliatorAdminFragment());
+                    loadFragment(new AffiliatorAdminFragment() , "AFFILIATOR_FRAGMENT");
                 }
                 else if(itemId == R.id.logoutAdmin)
                 {
-                    SharedPreferences sharedPreferences = getSharedPreferences("TOKEN_FILE" , MODE_PRIVATE);
+                    sharedPreferences = getSharedPreferences("TOKEN_FILE" , MODE_PRIVATE);
                     sharedPreferences.edit().remove("TOKEN_KEY");
                     sharedPreferences.edit().remove("USER_ID");
                     Intent intent = new Intent(Admin.this , LoginPage.class);
@@ -79,8 +88,8 @@ public class Admin extends AppCompatActivity {
         });
 
     }
-    private void loadFragment(Fragment fragment) {
-         getSupportFragmentManager().beginTransaction().replace(R.id.container , fragment).addToBackStack(null).commit();
+    private void loadFragment(Fragment fragment , String tag) {
+         getSupportFragmentManager().beginTransaction().replace(R.id.container , fragment , tag).addToBackStack(null).commit();
     }
 
 

@@ -20,13 +20,13 @@
 
 
             <ImageView
-                android:id="@+id/empImg"
+                android:id="@+id/employeeImg"
                 android:layout_width="364dp"
                 android:layout_height="116dp"
                 android:src="@drawable/ic_baseline_person_24" />
 
             <TextView
-                android:id="@+id/empName"
+                android:id="@+id/employeeDataName"
                 android:layout_width="366dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -42,7 +42,7 @@
 
 
                 <TextView
-                    android:id="@+id/emDetails"
+                    android:id="@+id/empDetails"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="TextView"

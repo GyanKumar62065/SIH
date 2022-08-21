@@ -2,7 +2,6 @@ package com.example.sih.Employee;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -14,17 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.sih.API.EmployeApi;
 import com.example.sih.R;
-import com.example.sih.RetrofitService;
-import com.example.sih.model.UsersResponse;
 import com.google.android.material.navigation.NavigationView;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class Employee extends AppCompatActivity {
 
@@ -53,21 +43,8 @@ public class Employee extends AppCompatActivity {
 
         //**********************************************
         //Loading user data
-         
-        (new RetrofitService()).getRetrofit().create(EmployeApi.class).getUserDeatils().enqueue(new Callback<List<UsersResponse>>() {
-            @Override
-            public void onResponse(Call<List<UsersResponse>> call, Response<List<UsersResponse>> response) {
 
-                Toast.makeText(Employee.this, "Data Fatched", Toast.LENGTH_SHORT).show();
-            }
 
-            @Override
-            public void onFailure(Call<List<UsersResponse>> call, Throwable t) {
-
-                Toast.makeText(Employee.this, "User Data Loding Failed", Toast.LENGTH_SHORT).show();
-            }
-        });
-         
 
          //**************************************
 
@@ -87,7 +64,12 @@ public class Employee extends AppCompatActivity {
                 }
                 else if(id == R.id.scholership_form_new)
                 {
-                    loadFragment(new NewScholershipFragment());
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction ft = fragmentManager.beginTransaction();
+                    ft.replace(R.id.container , new NewScholershipFragment() , "Scholarship");
+                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                    ft.addToBackStack(null);
+                    ft.commit();
                 }
                 else if(id == R.id.letest_scholerships)
                 {

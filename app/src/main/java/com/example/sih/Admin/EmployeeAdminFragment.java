@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,6 +20,7 @@ import com.example.sih.adapter.EmployeeAdminAdapter;
 import com.example.sih.model.UsersResponse;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -25,18 +28,24 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class EmployeeAdminFragment extends Fragment {
+public class EmployeeAdminFragment extends Fragment implements EmployeeAdminAdapter.ItemClickListener {
 
 
     FloatingActionButton createEmployee;
     RecyclerView recyclerView;
-    List<UsersResponse> employeeAllUserData;
-    EmployeeAdminAdapter employeeAdminAdapter = new EmployeeAdminAdapter();
+    List<UsersResponse> employeeAllUserData = new ArrayList<>();
+    EmployeeAdminAdapter employeeAdminAdapter ;
 
     public EmployeeAdminFragment() {
         // Required empty public constructor
     }
 
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,7 +60,6 @@ public class EmployeeAdminFragment extends Fragment {
         createEmployee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 loadFragment(new CreateEmpolyeeFormFragment());
             }
         });
@@ -62,14 +70,18 @@ public class EmployeeAdminFragment extends Fragment {
 
     private void lodingEmployeeData(View view) {
 
-        recyclerView = view.findViewById(R.id.recycler_items);
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("TOKEN_FILE", Context.MODE_PRIVATE);
         String userId = sharedPreferences.getString("USER_ID", "");
         String token = sharedPreferences.getString("TOKEN_KEY", "");
         Log.e("USER_ID_ADMIN", "" + userId);
+
         getEmployeeUserInfo(userId, token);
+
+        recyclerView = view.findViewById(R.id.recycler_items);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        employeeAdminAdapter = new EmployeeAdminAdapter(employeeAllUserData , this);
+        recyclerView.setAdapter(employeeAdminAdapter);
+
     }
 
     public void getEmployeeUserInfo(String id, String token) {
@@ -79,8 +91,6 @@ public class EmployeeAdminFragment extends Fragment {
             public void onResponse(Call<List<UsersResponse>> call, Response<List<UsersResponse>> response) {
                 Log.e("GET_EMPLOYEE_LIST", "" + response.body().get(0).getAuthorities().get(0).getAuthority());
                 employeeAllUserData = response.body();
-                employeeAdminAdapter = new EmployeeAdminAdapter(employeeAllUserData);
-                recyclerView.setAdapter(employeeAdminAdapter);
             }
             @Override
             public void onFailure(Call<List<UsersResponse>> call, Throwable t) {
@@ -93,4 +103,16 @@ public class EmployeeAdminFragment extends Fragment {
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).addToBackStack(null).commit();
     }
 
+    @Override
+    public void onItemClick(String emailId) {
+//        Fragment fragment = new UserDataFragment();
+        Fragment fragment = UserDataFragment.newInstance(emailId);
+
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+//        ft.replace(R.id.container , fragment);
+        ft.hide(getActivity().getSupportFragmentManager().findFragmentByTag("EMPLOYEE_FRAGMENT"));
+        ft.add(R.id.container , fragment);
+        ft.addToBackStack(null);
+        ft.commit();
+    }
 }

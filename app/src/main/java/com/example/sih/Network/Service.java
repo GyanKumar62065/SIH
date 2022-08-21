@@ -3,6 +3,7 @@ package com.example.sih.Network;
 import com.example.sih.model.EmployeeRegister;
 import com.example.sih.model.LoginRequest;
 import com.example.sih.model.RegistationRequest;
+import com.example.sih.model.ScholarShipFormModel;
 import com.example.sih.model.UsersResponse;
 
 import java.util.List;
@@ -33,5 +34,11 @@ public interface Service {
 
     @GET("user/{id}/affiliator")
     Call<List<UsersResponse>> getAffiliatorUserData( @Path("id") String cnadidateID,@Header("Authorization") String authorization);
+
+    @GET("scholarship")
+    Call<List<ScholarShipFormModel>> getScholarship(@Header("Authorization") String authorization );
+
+    @POST("scholarship")
+    Call<ScholarShipFormModel> setScholarShip(@Body ScholarShipFormModel body , @Header("Authorization") String authentication);
 
 }

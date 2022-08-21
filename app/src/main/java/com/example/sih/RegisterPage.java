@@ -1,7 +1,6 @@
 package com.example.sih;
 
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -41,13 +40,6 @@ public class RegisterPage extends AppCompatActivity {
             public void onFailure(Call<RegistationRequest> call, Throwable t) {
             }
         });
-    }
-
-
-    public void register(View view) {
-
-
-
     }
 
 }

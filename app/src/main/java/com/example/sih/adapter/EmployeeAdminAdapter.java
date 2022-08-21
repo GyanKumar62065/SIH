@@ -1,6 +1,5 @@
 package com.example.sih.adapter;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,24 +12,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sih.R;
 import com.example.sih.model.UsersResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeAdminAdapter extends RecyclerView.Adapter<EmployeeAdminAdapter.MyViewHolder> {
 
 
-    List<UsersResponse>data;
-    Context context;
+    private List<UsersResponse>data = new ArrayList<>();
+    private ItemClickListener clickListener;
 
-    public EmployeeAdminAdapter(List<UsersResponse> data) {
+    public EmployeeAdminAdapter(List<UsersResponse> data ,ItemClickListener clickListener ) {
         this.data = data;
-    }
-
-    public EmployeeAdminAdapter() {
-    }
-
-    public EmployeeAdminAdapter(Context context,List<UsersResponse>data) {
-        this.data = data;
-        this.context = context;
+        this.clickListener = clickListener;
     }
 
     @NonNull
@@ -48,29 +41,17 @@ public class EmployeeAdminAdapter extends RecyclerView.Adapter<EmployeeAdminAdap
         UsersResponse usersResponse = data.get(position);
         holder.employeeName.setText(String.valueOf(usersResponse.getName()));
         holder.employeeRole.setText(usersResponse.getRole());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-//        holder.llRow.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                Intent intent = new Intent(context, DataAdminIntent.class);
-////                context.startActivity(intent);
-//
-//                Toast.makeText(context, "Hello", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
-
+                clickListener.onItemClick(usersResponse.getEmailId());
+            }
+        });
     }
-    private void loadFragment() {
-    }
-
-
-
-
 
     @Override
     public int getItemCount() {
-
         return data.size();
     }
 
@@ -78,6 +59,7 @@ public class EmployeeAdminAdapter extends RecyclerView.Adapter<EmployeeAdminAdap
 
         LinearLayout llRow;
         TextView employeeName , employeeRole;
+//        String emailId;
 
 
         public MyViewHolder(@NonNull View itemView) {
@@ -86,7 +68,9 @@ public class EmployeeAdminAdapter extends RecyclerView.Adapter<EmployeeAdminAdap
             employeeName = itemView.findViewById(R.id.employeeName);
             employeeRole = itemView.findViewById(R.id.employeeRole);
         }
+    }
 
-
+    public interface ItemClickListener{
+        public void onItemClick(String Id);
     }
 }

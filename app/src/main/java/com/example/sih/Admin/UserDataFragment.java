@@ -1,4 +1,4 @@
-package com.example.sih.Employee;
+package com.example.sih.Admin;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.sih.Network.Repositry;
@@ -19,25 +20,42 @@ import com.example.sih.model.UsersResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class DashboardEmployeeFragment extends Fragment {
+public class UserDataFragment extends Fragment {
 
+    TextView adminName, adminDetails;
+    String emailId;
 
-    public DashboardEmployeeFragment() {
+    public UserDataFragment() {
         // Required empty public constructor
     }
 
+    public static UserDataFragment newInstance(String emailId) {
+        UserDataFragment userDataFragment = new UserDataFragment();
+        Bundle arg = new Bundle();
+        arg.putString("emailId", emailId);
+        userDataFragment.setArguments(arg);
+        return userDataFragment;
+    }
 
-    TextView adminName, adminDetails;
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if(getArguments() != null)
+        {
+            emailId = getArguments().getString("emailId");
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_profile_admin, container, false);
+        View view = inflater.inflate(R.layout.fragment_user_data, container, false);
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("TOKEN_FILE", Context.MODE_PRIVATE);
         String token = sharedPreferences.getString("TOKEN_KEY", "");
-        String emailId = sharedPreferences.getString("EMAIL_ID", "");
-        adminName = view.findViewById(R.id.adminName);
-        adminDetails = view.findViewById(R.id.adminDetails);
+//        String emailId = sharedPreferences.getString("EMAIL_ID", "");
+        adminName = view.findViewById(R.id.employeeDataName);
+        adminDetails = view.findViewById(R.id.empDetails);
         getUserInfo(emailId, token);
         return view;
     }
