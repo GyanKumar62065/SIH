@@ -1,4 +1,4 @@
-package com.example.sih.Employee;
+package com.example.sih.Students;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -8,9 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.sih.Network.Repositry;
 import com.example.sih.R;
@@ -22,25 +22,26 @@ import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ScholarshipInfo#newInstance} factory method to
+ * Use the {@link SholarshipDetailsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ScholarshipInfo extends Fragment {
+public class SholarshipDetailsFragment extends Fragment {
 
-
-    String ScholarId;
+    String scholarId;
     TextView shcolarShipName, scholarShipAmount, scholarShipInfo;
-    Button deleteScholerShip;
+    Button applyScholerShip;
     String token;
 
-    public ScholarshipInfo() {
+
+    public SholarshipDetailsFragment() {
         // Required empty public constructor
     }
 
-    public static ScholarshipInfo newInstance(String Id) {
-        ScholarshipInfo fragment = new ScholarshipInfo();
+
+    public static SholarshipDetailsFragment newInstance(String id) {
+        SholarshipDetailsFragment fragment = new SholarshipDetailsFragment();
         Bundle args = new Bundle();
-        args.putString("ID", Id);
+        args.putString("SCHOLAR_ID", id);
         fragment.setArguments(args);
         return fragment;
     }
@@ -49,25 +50,31 @@ public class ScholarshipInfo extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            ScholarId = getArguments().getString("ID");
+            scholarId = getArguments().getString("SCHOLAR_ID");
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_sholarship_details, container, false);
 
-        View view = inflater.inflate(R.layout.fragment_scholarship_info, container, false);
         shcolarShipName = view.findViewById(R.id.shcolarShipName);
         scholarShipAmount = view.findViewById(R.id.scholarShipAmount);
         scholarShipInfo = view.findViewById(R.id.scholarShipInfo);
-        deleteScholerShip = view.findViewById(R.id.deleteScholerShip);
+        applyScholerShip = view.findViewById(R.id.applyScholerShip);
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("TOKEN_FILE", Context.MODE_PRIVATE);
         token = sharedPreferences.getString("TOKEN_KEY", "");
-        getScholarshipInfoById(ScholarId, token);
+        getScholarshipInfoById(scholarId, token);
+        applyScholerShip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                applyScholerShipAmount();
+            }
+        });
+
         return view;
     }
-
 
     public void getScholarshipInfoById(String scholarShipId, String token) {
         Call<ScholarShipFormModel> call = Repositry.getInstance().getCommentsService().getScholarshipById(scholarShipId, "Bearer " + token);
@@ -78,12 +85,7 @@ public class ScholarshipInfo extends Fragment {
                 scholarShipAmount.setText(response.body().getAmount());
                 scholarShipInfo.setText(response.body().getInformation());
 
-                deleteScholerShip.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        deleteScholerShipAmount();
-                    }
-                });
+
             }
 
             @Override
@@ -93,30 +95,14 @@ public class ScholarshipInfo extends Fragment {
         });
     }
 
-    private void deleteScholerShipAmount() {
-        deleteScholerShipById(ScholarId, token);
-//        getScholarshipInfoById(ScholarId , token);
+    private void applyScholerShipAmount() {
 
-        if(getActivity().getSupportFragmentManager().getBackStackEntryCount() > 0)
-        {
-            getActivity().getSupportFragmentManager().popBackStackImmediate();
-        }
-    }
+        Fragment fragment = ScholarShipStudentFormFragment.newInstance(scholarId);
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.container , fragment);
+        ft.addToBackStack(null);
+        ft.commit();
 
-
-    public void deleteScholerShipById(String id, String token) {
-        Call<String> call = Repositry.getInstance().getCommentsService().deleteScholarShipById(id, "Bearer " + token);
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                Toast.makeText(getContext(), "Successfully Deleted Scholarship" , Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Toast.makeText(getContext(), "Delete Failed" , Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
 

@@ -15,6 +15,8 @@
         android:layout_height="44dp"
         android:layout_marginTop="36dp"
         android:text="TextView"
+        android:textAlignment="center"
+        android:paddingHorizontal="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,6 +27,8 @@
         android:layout_height="44dp"
         android:layout_marginTop="36dp"
         android:text="TextView"
+        android:textAlignment="center"
+        android:paddingHorizontal="10dp"
         app:layout_constraintEnd_toEndOf="@+id/shcolarShipName"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/shcolarShipName"
@@ -32,8 +36,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="0dp"
-        android:layout_height="350dp"
+        android:layout_width="321dp"
+        android:layout_height="488dp"
         android:layout_marginTop="16dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="@+id/scholarShipAmount"
@@ -45,27 +49,42 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/scholarShipInfo"
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/scholarShipInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20sp"
+                    android:text="TextView" />
+
+                <Button
+                    android:id="@+id/applyScholerShip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="20sp"
+                    android:layout_marginTop="8dp"
+                    android:text="Apply For Scholarship"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/linearLayout"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                    app:layout_constraintVertical_bias="0.171" />
+
+            </LinearLayout>
+
         </ScrollView>
+
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/deleteScholerShip"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Delete"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.171" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

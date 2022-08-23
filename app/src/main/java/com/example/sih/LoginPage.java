@@ -16,6 +16,7 @@ import com.example.sih.Admin.Admin;
 import com.example.sih.Affliator.Affiliator;
 import com.example.sih.Employee.Employee;
 import com.example.sih.Network.Repositry;
+import com.example.sih.Students.Student;
 import com.example.sih.model.LoginRequest;
 import com.example.sih.model.UsersResponse;
 
@@ -141,16 +142,19 @@ public class LoginPage extends AppCompatActivity {
             startActivity(new Intent(LoginPage.this, Employee.class));
         } else if (userType.equals("college")) {
             startActivity(new Intent(LoginPage.this, Admin.class));
-        } else {
+        }
+        else if(userType.equals("student"))
+        {
+            startActivity(new Intent(LoginPage.this , Student.class));
+        }
+        else {
             Toast.makeText(LoginPage.this, "Worng User", Toast.LENGTH_SHORT).show();
         }
     }
 
-
     private void loginAsEmoloyee() {
         Intent intent = new Intent(LoginPage.this, Employee.class);
-//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//        intent.putExtra("TOKEN_STRING", token);
+
         startActivity(intent);
     }
 
