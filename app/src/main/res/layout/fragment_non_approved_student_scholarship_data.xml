@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="45dp"
+    android:layout_weight="100"
+    tools:context=".Employee.NonApprovedStudentScholarshipDataFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="90"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:id="@+id/setNonApprovedScholarshipStudentData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hello"
+                android:textColor="@color/black"
+                android:paddingHorizontal="40dp"
+                android:textSize="21sp"
+                android:layout_marginBottom="45dp"
+                />
+            <Button
+                android:id="@+id/setNonApprovedScholarshipStudentReletedDocuments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:text="Download Related Documents"/>
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        >
+
+        <Button
+            android:id="@+id/setNonApprovedScholarshipStudentReject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Reject"
+            />
+
+        <Button
+            android:id="@+id/setNonApprovedScholarshipStudentApprove"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Approve"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

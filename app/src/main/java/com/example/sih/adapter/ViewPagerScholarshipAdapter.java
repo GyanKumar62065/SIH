@@ -4,12 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.sih.Employee.ApprovedScholarshipFragment;
 import com.example.sih.Employee.NonApprovedScholarshipFragment;
 
-public class ViewPagerScholarshipAdapter extends FragmentPagerAdapter {
+public class ViewPagerScholarshipAdapter extends FragmentStatePagerAdapter {
 
     public ViewPagerScholarshipAdapter(@NonNull FragmentManager fm) {
         super(fm);

@@ -2,21 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/home_employee"
-        android:icon="@drawable/ic_baseline_home_24"
         android:title="Home" />
     <item
         android:id="@+id/dashboard"
-        android:icon="@drawable/ic_baseline_dashboard_24"
         android:title="Dashboard" />
-
-
     <item
         android:id="@+id/scholership_form_new"
-        android:icon="@drawable/ic_baseline_create_24"
         android:title="New Scholership" />
     <item
         android:id="@+id/letest_scholerships"
-        android:icon="@drawable/ic_baseline_format_list_bulleted_24"
         android:title="Letest Scholerships" />
+    <item
+        android:id="@+id/employeeLogOut"
+        android:title="Logout" />
 
 </menu>

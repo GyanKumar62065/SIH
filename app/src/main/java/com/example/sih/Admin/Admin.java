@@ -45,9 +45,6 @@ public class Admin extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("TOKEN_FILE" , MODE_PRIVATE);
 
-
-
-
         loadFragment(new HomeAdminFragment() , "HOME_FRAGMENT");
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
