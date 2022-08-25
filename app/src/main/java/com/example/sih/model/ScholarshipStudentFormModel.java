@@ -4,6 +4,9 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class ScholarshipStudentFormModel {
+    public ScholarshipStudentFormModel() {
+    }
+
     @SerializedName("applicationId")
     @Expose
     private Integer applicationId;

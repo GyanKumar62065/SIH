@@ -55,14 +55,14 @@ public class ScholarShipStudentFormFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_scholar_ship_student_form, container, false);
 
-        studentName = view.findViewById(R.id.studentName);
+        studentName = view.findViewById(R.id.student_Name);
         studentEmailId = view.findViewById(R.id.studentEmailId);
         studentContactNo = view.findViewById(R.id.studentContactNo);
         studentAddress = view.findViewById(R.id.studentAddress);
         studentCity = view.findViewById(R.id.studentCity);
         studentState = view.findViewById(R.id.studentState);
         studentId = view.findViewById(R.id.studentId);
-        collegeName = view.findViewById(R.id.collegeName);
+        collegeName = view.findViewById(R.id.studentName);
         collegeId = view.findViewById(R.id.collegeId);
         DOR = view.findViewById(R.id.DOR);
         studentAadharNo = view.findViewById(R.id.studentAadharNo);

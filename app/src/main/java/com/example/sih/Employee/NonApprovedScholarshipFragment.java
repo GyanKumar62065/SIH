@@ -8,11 +8,9 @@ import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sih.Network.Repositry;
 import com.example.sih.R;
-import com.example.sih.adapter.NonApprovedScholarsipAdapter;
 import com.example.sih.model.ScholarshipStudentFormModel;
 
 import java.util.ArrayList;
@@ -22,12 +20,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class NonApprovedScholarshipFragment extends Fragment implements NonApprovedScholarsipAdapter.ItemClickListener {
+public class NonApprovedScholarshipFragment extends Fragment {
 
-
-    RecyclerView recyclerView;
-    NonApprovedScholarsipAdapter nonApprovedScholarsipAdapter;
-    List<ScholarshipStudentFormModel> list = new ArrayList<>();
+    List<ScholarshipStudentFormModel>list = new ArrayList<>();
 
     public NonApprovedScholarshipFragment() {
         // Required empty public constructor
@@ -41,39 +36,39 @@ public class NonApprovedScholarshipFragment extends Fragment implements NonAppro
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_non_approved_scholarship, container, false);
-//        recyclerView = view.findViewById(R.id.recyclerNonApprovedItems);
+
+//        list.add(new ScholarshipStudentFormModel());
+//        list.add(new ScholarshipStudentFormModel());
+//        list.add(new ScholarshipStudentFormModel());
+//        list.add(new ScholarshipStudentFormModel());
+//        list.add(new ScholarshipStudentFormModel());
 //
-//        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("TOKEN_FILE", Context.MODE_PRIVATE);
-//        String token = sharedPreferences.getString("TOKEN_KEY", "");
-//
-//        getAllPendingScholarshipStudentForm(token);
+//        RecyclerView recyclerView = view.findViewById(R.id.recyclerNonApprovedItems);
 //        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-//        nonApprovedScholarsipAdapter = new NonApprovedScholarsipAdapter(this);
+//        NonApprovedScholarshipAdapter adapter = new NonApprovedScholarshipAdapter(list);
+//        recyclerView.setAdapter(adapter);
+
 
         return view;
     }
 
-    @Override
-    public void onItemClick(String emailId) {
-
-    }
-
-    public void getAllPendingScholarshipStudentForm(String token) {
-        Call<List<ScholarshipStudentFormModel>> call = Repositry.getInstance().getCommentsService().getAllPendingForms("Bearer " + token);
+    public void getAllPendingFromsOfStudent(String token)
+    {
+        Call<List<ScholarshipStudentFormModel>> call = Repositry.getInstance().getCommentsService().getAllPendingForms("Baerer " + token);
         call.enqueue(new Callback<List<ScholarshipStudentFormModel>>() {
             @Override
             public void onResponse(Call<List<ScholarshipStudentFormModel>> call, Response<List<ScholarshipStudentFormModel>> response) {
-                Log.e("NON_APPROVED FORMS" , "SUCSSESS");
-                list = response.body();
-                nonApprovedScholarsipAdapter.setData(list);
-                recyclerView.setAdapter(nonApprovedScholarsipAdapter);
+                response.body();
+                Log.e("" , "");
             }
+
             @Override
             public void onFailure(Call<List<ScholarshipStudentFormModel>> call, Throwable t) {
 
             }
         });
     }
+
+
 }

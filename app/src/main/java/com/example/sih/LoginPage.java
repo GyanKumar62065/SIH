@@ -17,8 +17,11 @@ import com.example.sih.Affliator.Affiliator;
 import com.example.sih.Employee.Employee;
 import com.example.sih.Network.Repositry;
 import com.example.sih.Students.Student;
+import com.example.sih.college.Collage;
 import com.example.sih.model.LoginRequest;
 import com.example.sih.model.UsersResponse;
+import com.example.sih.register.CollageRegister;
+import com.example.sih.register.StudentRegister;
 
 import java.util.ArrayList;
 
@@ -60,24 +63,9 @@ public class LoginPage extends AppCompatActivity {
 
                 emailId = username.getText().toString();
                 passwordTxt = password.getText().toString();
-                login(new LoginRequest(emailId, passwordTxt)); // Pssing username and password
+                login(new LoginRequest(emailId, passwordTxt));
                 editor.putString("EMAIL_ID", emailId);
                 editor.apply();
-
-//                profileName = findViewById(R.id.profileName);
-//                emailIdd = findViewById(R.id.emailId);
-
-//                Log.e("ADMIN>JAVA", "Success");
-
-//                emailIdd.setText(emailId);
-//                startActivity(new Intent(LoginPage.this, Admin.class));
-
-//                NavigationView navigationView = findViewById(R.id.navigation_view);
-//                View headerView = navigationView.getHeaderView(0);
-//                emailIdd = headerView.findViewById(R.id.profileName);
-//                profileName = headerView.findViewById(R.id.emailId);
-//                emailIdd.setText(emailId);
-
             }
         });
     }
@@ -90,16 +78,18 @@ public class LoginPage extends AppCompatActivity {
             public void onResponse(Call<LoginRequest> call, Response<LoginRequest> response) {
                 Log.e("GET_TOKEN", "" + response.body().getToken());
 
-                token = response.body().getToken();
-                getUserInfo(emailId, response.body().getToken());
-                //*******************************
-                // Passing Token into ProfileAdminFragment
 
-                editor.putString("TOKEN_KEY", token);
-                editor.apply();
-
-                //*******************************
-
+                try {
+                    token = response.body().getToken();
+                    getUserInfo(emailId, response.body().getToken());
+                    editor.putString("TOKEN_KEY", token);
+                    editor.apply();
+                    Toast.makeText(LoginPage.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+                }
+                catch (Exception e)
+                {
+                    Log.e("GETTING TOKEN EXCEPTION" , "" + e.toString());
+                }
             }
 
             @Override
@@ -113,17 +103,18 @@ public class LoginPage extends AppCompatActivity {
         call.enqueue(new Callback<UsersResponse>() {
             @Override
             public void onResponse(Call<UsersResponse> call, retrofit2.Response<UsersResponse> response) {
-                Log.e("GETUSER_DATA_TYPE", "" + response.body().getAuthorities().get(0).getAuthority());
-                Log.e("GETUSER_ID", "" + response.body().getUserId());
-                userId = String.valueOf(response.body().getUserId());
-                //**************************
-                editor.putString("USER_ID", userId);
-//                editor.putString("PROFILE_NAME" , response.body().getName().toString());
-                editor.apply();
-                //************
-                userType = response.body().getAuthorities().get(0).getAuthority().toLowerCase();
-//                profileName.setText(String.valueOf(response.body().getName()));
-                goToActivity(userType);
+                try {
+                    Log.e("GETUSER_DATA_TYPE", "" + response.body().getAuthorities().get(0).getAuthority());
+                    Log.e("GETUSER_ID", "" + response.body().getUserId());
+                    userId = String.valueOf(response.body().getUserId());
+                    editor.putString("USER_ID", userId);
+                    editor.apply();
+                    userType = response.body().getAuthorities().get(0).getAuthority().toLowerCase();
+                    goToActivity(userType);
+                }catch (Exception e)
+                {
+                    Log.e("GETTING USER DATA" , "" + e.toString());
+                }
             }
 
             @Override
@@ -141,47 +132,35 @@ public class LoginPage extends AppCompatActivity {
         } else if (userType.equals("employee")) {
             startActivity(new Intent(LoginPage.this, Employee.class));
         } else if (userType.equals("college")) {
-            startActivity(new Intent(LoginPage.this, Admin.class));
+            startActivity(new Intent(LoginPage.this, Collage.class));
         }
-        else if(userType.equals("student"))
-        {
-            startActivity(new Intent(LoginPage.this , Student.class));
+        else if(userType.equals("student")) {
+            startActivity(new Intent(LoginPage.this, Student.class));
         }
         else {
             Toast.makeText(LoginPage.this, "Worng User", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void loginAsEmoloyee() {
-        Intent intent = new Intent(LoginPage.this, Employee.class);
 
-        startActivity(intent);
-    }
-
-    private void loginAsAdimn() {
-        Intent intent = new Intent(LoginPage.this, Admin.class);
-//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-    }
-
-    private void loginAsAffliator() {
-        Intent intent = new Intent(LoginPage.this, Affiliator.class);
-//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-    }
-
-    public void register(View view) {
-        Intent intent = new Intent(this, RegisterPage.class);
-        startActivity(intent);
-    }
 
     @Override
     public void onBackPressed() {
-
         Intent a = new Intent(Intent.ACTION_MAIN);
         a.addCategory(Intent.CATEGORY_HOME);
         a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(a);
-//        super.onBackPressed();
+    }
+
+    public void studentRegister(View view) {
+        Intent intent = new Intent(LoginPage.this , StudentRegister.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
+    public void collegeRegister(View view) {
+        Intent intent = new Intent(LoginPage.this , CollageRegister.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }

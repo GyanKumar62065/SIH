@@ -1,5 +1,6 @@
 package com.example.sih.Network;
 
+import com.example.sih.model.ApplyAffiliationFormModel;
 import com.example.sih.model.EmployeeRegister;
 import com.example.sih.model.LoginRequest;
 import com.example.sih.model.RegistationRequest;
@@ -54,6 +55,10 @@ public interface Service {
 
     @GET("showNonApprovedScholarshipForms")
     Call<List<ScholarshipStudentFormModel>> getAllPendingForms(@Header("Authorization") String authentication);
+
+    @POST("affiliationform")
+    Call<ApplyAffiliationFormModel> setAffiliationFormData(@Body ApplyAffiliationFormModel applyAffiliationFormModel , @Header("Authorization") String authentication);
+
 
 
 }

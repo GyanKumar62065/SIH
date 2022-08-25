@@ -82,16 +82,25 @@
                 android:text="@string/login" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/registerAsStudent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:minHeight="48dp"
-                android:onClick="register"
-                android:text="@string/create_new_account"
+                android:onClick="studentRegister"
+                android:text="new student registation"
                 android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/registerAsCollege"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:onClick="collegeRegister"
+                android:text="new college registation"
+                android:textAlignment="center"
+                android:textColor="@color/black" />
+
         </LinearLayout>
     </ScrollView>
 

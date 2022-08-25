@@ -32,8 +32,6 @@ public class Admin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-        Intent intent = getIntent();
-        token = intent.getStringExtra("TOKEN_STRING");
 
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigation_view);
@@ -45,7 +43,7 @@ public class Admin extends AppCompatActivity {
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
-         sharedPreferences = getSharedPreferences("TOKEN_FILE" , MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("TOKEN_FILE" , MODE_PRIVATE);
 
 
 
@@ -76,11 +74,11 @@ public class Admin extends AppCompatActivity {
                 else if(itemId == R.id.logoutAdmin)
                 {
                     sharedPreferences = getSharedPreferences("TOKEN_FILE" , MODE_PRIVATE);
-                    sharedPreferences.edit().remove("TOKEN_KEY");
-                    sharedPreferences.edit().remove("USER_ID");
+                    sharedPreferences.edit().clear();
+                    sharedPreferences.edit().apply();
                     Intent intent = new Intent(Admin.this , LoginPage.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
-
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;

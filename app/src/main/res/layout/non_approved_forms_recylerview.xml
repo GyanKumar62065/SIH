@@ -15,6 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:background="@color/black"
             android:orientation="horizontal"
             android:padding="11dp">
 
@@ -33,6 +34,7 @@
                     android:layout_marginBottom="10dp"
                     android:padding="2sp"
                     android:text="Name"
+                    android:textColor="@color/white"
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
@@ -43,6 +45,7 @@
                     android:layout_below="@id/txtName"
                     android:padding="2sp"
                     android:text="Scholarship Name"
+                    android:textColor="@color/white"
                     android:textSize="16sp" />
             </RelativeLayout>
 
@@ -58,7 +61,8 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:padding="2sp"
-                    android:text="Status" />
+                    android:text="Status"
+                    android:textColor="@color/white" />
 
                 <TextView
                     android:id="@+id/currStatus"
@@ -67,7 +71,8 @@
                     android:layout_below="@+id/status"
                     android:layout_centerHorizontal="true"
                     android:padding="2sp"
-                    android:text="Painding" />
+                    android:text="Painding"
+                    android:textColor="@color/white" />
             </RelativeLayout>
 
         </LinearLayout>
