@@ -122,7 +122,6 @@
                 android:ems="10"
                 android:textColor="@color/black"
                 android:text="Create"
-                android:textSize="25sp"
                 app:layout_constraintEnd_toEndOf="@id/employeePasswordFiled"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/employeePasswordFiled"

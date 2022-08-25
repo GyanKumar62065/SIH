@@ -79,9 +79,9 @@ public class EmployeeAdminFragment extends Fragment implements EmployeeAdminAdap
 
         recyclerView = view.findViewById(R.id.recycler_items);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        employeeAdminAdapter = new EmployeeAdminAdapter(employeeAllUserData , this);
-        recyclerView.setAdapter(employeeAdminAdapter);
-
+        employeeAdminAdapter = new EmployeeAdminAdapter(this);
+//        employeeAdminAdapter = new EmployeeAdminAdapter(employeeAllUserData , this);
+//        recyclerView.setAdapter(employeeAdminAdapter);
     }
 
     public void getEmployeeUserInfo(String id, String token) {
@@ -91,6 +91,8 @@ public class EmployeeAdminFragment extends Fragment implements EmployeeAdminAdap
             public void onResponse(Call<List<UsersResponse>> call, Response<List<UsersResponse>> response) {
                 Log.e("GET_EMPLOYEE_LIST", "" + response.body().get(0).getAuthorities().get(0).getAuthority());
                 employeeAllUserData = response.body();
+                employeeAdminAdapter.setData(employeeAllUserData);
+                recyclerView.setAdapter(employeeAdminAdapter);
             }
             @Override
             public void onFailure(Call<List<UsersResponse>> call, Throwable t) {

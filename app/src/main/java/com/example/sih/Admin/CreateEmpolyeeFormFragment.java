@@ -81,9 +81,6 @@ public class CreateEmpolyeeFormFragment extends Fragment {
         employeeCreateButton = view.findViewById(R.id.employeeCreateButton);
 
 
-
-
-
         employeeCreateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,15 +94,11 @@ public class CreateEmpolyeeFormFragment extends Fragment {
                 role = "employee";
 
                 initBlock();
-                if (getActivity().getSupportFragmentManager().getBackStackEntryCount() > 0) {
-                    getActivity().getSupportFragmentManager().popBackStackImmediate();
-                }
+
                 Toast.makeText(view.getContext(), "Employee Created", Toast.LENGTH_SHORT).show();
 
             }
         });
-
-
         return view;
     }
 
@@ -120,7 +113,13 @@ public class CreateEmpolyeeFormFragment extends Fragment {
         call.enqueue(new Callback<EmployeeRegister>() {
             @Override
             public void onResponse(Call<EmployeeRegister> call, Response<EmployeeRegister> response) {
-                Toast.makeText(getContext(), "Employee Created Successfully", Toast.LENGTH_SHORT).show();
+                if(response.isSuccessful())
+                {
+                    Toast.makeText(getContext(), "Employee Created Successfully", Toast.LENGTH_SHORT).show();
+                    if (getActivity().getSupportFragmentManager().getBackStackEntryCount() > 0) {
+                        getActivity().getSupportFragmentManager().popBackStackImmediate();
+                    }
+                }
             }
 
             @Override

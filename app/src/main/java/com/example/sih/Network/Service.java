@@ -59,6 +59,8 @@ public interface Service {
     @POST("affiliationform")
     Call<ApplyAffiliationFormModel> setAffiliationFormData(@Body ApplyAffiliationFormModel applyAffiliationFormModel , @Header("Authorization") String authentication);
 
+    @GET("scholarshipformofcollege/{id}")
+    Call<List<ScholarshipStudentFormModel>> getAllStudentDataByCollegeId(@Path("id") String id , @Header("Authorization")String auth);
 
 
 }

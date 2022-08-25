@@ -26,6 +26,14 @@ public class EmployeeAdminAdapter extends RecyclerView.Adapter<EmployeeAdminAdap
         this.clickListener = clickListener;
     }
 
+    public EmployeeAdminAdapter(ItemClickListener clickListener) {
+        this.clickListener = clickListener;
+    }
+
+    public void setData(List<UsersResponse> data) {
+        this.data = data;
+    }
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

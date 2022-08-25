@@ -22,7 +22,7 @@ public class CreateAffiliatorFormFragment extends Fragment {
 
     Button affiliatorCreateButton;
     EditText affiliatorNameField, affiliatorEmailField, affiliatorContactNumberFiled, affiliatorAddressLine1Filed, affiliatorAddressLine2Filed, affiliatorPasswordFiled;
-    String name, email, contact, addressLine1, addressLine2, password , role;
+    String name, email, contact, addressLine1, addressLine2, password, role;
 
     public CreateAffiliatorFormFragment() {
         // Required empty public constructor
@@ -55,9 +55,6 @@ public class CreateAffiliatorFormFragment extends Fragment {
                 role = "affiliator";
 
                 initBlock();
-                if (getActivity().getSupportFragmentManager().getBackStackEntryCount() > 0) {
-                    getActivity().getSupportFragmentManager().popBackStackImmediate();
-                }
 
                 Toast.makeText(view.getContext(), "Affliator Created", Toast.LENGTH_SHORT).show();
             }
@@ -69,7 +66,7 @@ public class CreateAffiliatorFormFragment extends Fragment {
 
     private void initBlock() {
 //        genrateToken(new EmployeeRegister("Gyan" , "gk@gmail.com" , "gk@gmail.com" , "employee" , "+91 6206540171" , "Indrapuri Sector C" , "Piplani" , "123"));
-        genrateToken(new EmployeeRegister(name , email , email , role , "+91 " + contact , addressLine1 , addressLine2 , password));
+        genrateToken(new EmployeeRegister(name, email, email, role, "+91 " + contact, addressLine1, addressLine2, password));
     }
 
 
@@ -78,7 +75,12 @@ public class CreateAffiliatorFormFragment extends Fragment {
         call.enqueue(new Callback<EmployeeRegister>() {
             @Override
             public void onResponse(Call<EmployeeRegister> call, Response<EmployeeRegister> response) {
-                Toast.makeText(getContext(), "Employee Created Successfully", Toast.LENGTH_SHORT).show();
+                if (response.isSuccessful()) {
+                    Toast.makeText(getContext(), "Employee Created Successfully", Toast.LENGTH_SHORT).show();
+                    if (getActivity().getSupportFragmentManager().getBackStackEntryCount() > 0) {
+                        getActivity().getSupportFragmentManager().popBackStackImmediate();
+                    }
+                }
             }
 
             @Override

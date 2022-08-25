@@ -33,6 +33,7 @@ public class AffiliatorAdminFragment extends Fragment implements EmployeeAdminAd
     RecyclerView recyclerView;
     List<UsersResponse> affiliatorAllUserData = new ArrayList<>();
     EmployeeAdminAdapter employeeAdminAdapter;
+
     public AffiliatorAdminFragment() {
         // Required empty public constructor
     }
@@ -63,8 +64,9 @@ public class AffiliatorAdminFragment extends Fragment implements EmployeeAdminAd
 
         recyclerView = view.findViewById(R.id.recycler_items);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        employeeAdminAdapter = new EmployeeAdminAdapter(affiliatorAllUserData, this);
-        recyclerView.setAdapter(employeeAdminAdapter);
+        employeeAdminAdapter = new EmployeeAdminAdapter(this);
+//        employeeAdminAdapter = new EmployeeAdminAdapter(affiliatorAllUserData, this);
+//        recyclerView.setAdapter(employeeAdminAdapter);
     }
 
     public void getAffiliatorUserInfo(String id, String token) {
@@ -75,6 +77,9 @@ public class AffiliatorAdminFragment extends Fragment implements EmployeeAdminAd
                 Log.e("GET_EMPLOYEE_LIST", "" + response.body().get(0).getAuthorities().get(0).getAuthority());
                 affiliatorAllUserData = response.body();
 
+                employeeAdminAdapter.setData(affiliatorAllUserData);
+
+                recyclerView.setAdapter(employeeAdminAdapter);
             }
 
             @Override
