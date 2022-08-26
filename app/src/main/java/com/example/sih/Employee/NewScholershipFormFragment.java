@@ -74,7 +74,19 @@ public class NewScholershipFormFragment extends Fragment {
         call.enqueue(new Callback<ScholarShipFormModel>() {
             @Override
             public void onResponse(Call<ScholarShipFormModel> call, Response<ScholarShipFormModel> response) {
-                Toast.makeText(view.getContext(), "Scholarship Created", Toast.LENGTH_SHORT).show();
+                try {
+                    if(response.isSuccessful())
+                    {
+                        Toast.makeText(view.getContext(), "Scholarship Created", Toast.LENGTH_SHORT).show();
+//                        if(getActivity().getSupportFragmentManager().getBackStackEntryCount()>0)
+//                        {
+//                            getActivity().getSupportFragmentManager().popBackStackImmediate();
+//                        }
+                    }
+                }catch (Exception e)
+                {
+                    Toast.makeText(view.getContext(), "" + e.toString(), Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override

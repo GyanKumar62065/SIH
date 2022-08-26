@@ -1,6 +1,7 @@
 package com.example.sih.Admin;
 
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -93,9 +94,29 @@ public class CreateEmpolyeeFormFragment extends Fragment {
                 password = employeePasswordFiled.getText().toString();
                 role = "employee";
 
-                initBlock();
+                if(name.isEmpty()){
+                    Toast.makeText(getActivity(), "Enter Name", Toast.LENGTH_SHORT).show();
+                }
+                else if(email.isEmpty()){
+                    Toast.makeText(getActivity(), "Enter Gmail Address", Toast.LENGTH_SHORT).show();
+                }
+                else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                    Toast.makeText(getActivity(), "Enter Valid Gmail Address", Toast.LENGTH_SHORT).show();
+                }else if(contact.isEmpty()){
+                    Toast.makeText(getActivity(), "Enter Contact Details", Toast.LENGTH_SHORT).show();
+                }
+                else if(addressLine1.isEmpty()){
+                    Toast.makeText(getActivity(), "Enter Address Line 1", Toast.LENGTH_SHORT).show();
+                }else if(addressLine2.isEmpty()){
+                    Toast.makeText(getActivity(), "Enter Address Line 2", Toast.LENGTH_SHORT).show();
+                }else if(password.isEmpty()){
+                    Toast.makeText(getActivity(), "Enter Password", Toast.LENGTH_SHORT).show();
+                }else if(password.length() < 8){
+                    Toast.makeText(getActivity(), "Password Length Should be greater than 8", Toast.LENGTH_SHORT).show();
+                }else{
+                    initBlock();
 
-                Toast.makeText(view.getContext(), "Employee Created", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });

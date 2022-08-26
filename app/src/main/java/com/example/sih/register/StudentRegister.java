@@ -3,6 +3,7 @@ package com.example.sih.register;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,8 +40,32 @@ public class StudentRegister extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                initBlock();
+                if(name.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Enter Name", Toast.LENGTH_SHORT).show();
+                }
+                else if(stuEmail.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Enter Gmail Address", Toast.LENGTH_SHORT).show();
+                }
+                else if(!Patterns.EMAIL_ADDRESS.matcher(stuEmail.getText().toString()).matches()){
+                    Toast.makeText(getApplicationContext(), "Enter Valid Gmail Address", Toast.LENGTH_SHORT).show();
+                }else if(contactNumber.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Enter Contact Details", Toast.LENGTH_SHORT).show();
+                }
+                else if(addressLine1.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Enter Address Line 1", Toast.LENGTH_SHORT).show();
+                }else if(addressLine2.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Enter Address Line 2", Toast.LENGTH_SHORT).show();
+                }else if(studentPassword.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Enter Password", Toast.LENGTH_SHORT).show();
+                }else if(studentPassword.getText().toString().length() < 8){
+                    Toast.makeText(getApplicationContext(), "Password Length Should be greater than 8", Toast.LENGTH_SHORT).show();
+                }else{
+                    initBlock();
+                    Toast.makeText(getApplicationContext(), "College Registered", Toast.LENGTH_SHORT).show();
+                }
+
             }
+
         });
 
 
