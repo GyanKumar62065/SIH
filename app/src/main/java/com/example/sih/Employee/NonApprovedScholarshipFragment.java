@@ -36,8 +36,6 @@ public class NonApprovedScholarshipFragment extends Fragment implements NonAppro
         // Required empty public constructor
     }
 
-
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,12 +50,8 @@ public class NonApprovedScholarshipFragment extends Fragment implements NonAppro
         recyclerView = view.findViewById(R.id.recyclerNonApprovedItems);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         nonApprovedScholarshipAdapter = new NonApprovedScholarshipAdapter(this);
-
         getAllPendingFromsOfStudent(token);
-
         Log.e("LIST DATA", "" + list.toString());
-
-
         return view;
     }
 
@@ -83,7 +77,6 @@ public class NonApprovedScholarshipFragment extends Fragment implements NonAppro
             }
         });
     }
-
 
     @Override
     public void onItemClick(int Id) {

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,7 +47,7 @@ public class LoginPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_page);
+        setContentView(R.layout.dummy_file);
 
         username = findViewById(R.id.userName);
         password = findViewById(R.id.password);
@@ -63,9 +64,21 @@ public class LoginPage extends AppCompatActivity {
 
                 emailId = username.getText().toString();
                 passwordTxt = password.getText().toString();
-                login(new LoginRequest(emailId, passwordTxt));
-                editor.putString("EMAIL_ID", emailId);
-                editor.apply();
+                //**********************
+//                emailId = "student@gmail.com";
+//                passwordTxt = "123";
+//                ************************************
+                if(check)
+                {
+                    login(new LoginRequest(emailId, passwordTxt));
+                    editor.putString("EMAIL_ID", emailId);
+                    editor.apply();
+                }else
+                {
+                    Toast.makeText(LoginPage.this, "Please click on check box", Toast.LENGTH_SHORT).show();
+
+                }
+                
             }
         });
     }
@@ -110,6 +123,7 @@ public class LoginPage extends AppCompatActivity {
                     editor.putString("USER_ID", userId);
                     editor.apply();
                     userType = response.body().getAuthorities().get(0).getAuthority().toLowerCase();
+                    editor.putString("USER_ROLE" , userType.toString());
                     goToActivity(userType);
                 }catch (Exception e)
                 {
@@ -162,5 +176,14 @@ public class LoginPage extends AppCompatActivity {
         Intent intent = new Intent(LoginPage.this , CollageRegister.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+    }
+
+    public void forgetPassword(View view) {
+
+    }
+
+    boolean check;
+    public void checked(View view) {
+        check = ((CheckBox )view).isChecked();
     }
 }

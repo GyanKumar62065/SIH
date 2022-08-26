@@ -28,7 +28,6 @@ public class Collage extends AppCompatActivity {
     SharedPreferences sharedPreferences;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,53 +43,47 @@ public class Collage extends AppCompatActivity {
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
-        sharedPreferences = getSharedPreferences("TOKEN_FILE" , MODE_PRIVATE);
-        loadFragment(new HomeAdminFragment() , "HOME_FRAGMENT");
+        sharedPreferences = getSharedPreferences("TOKEN_FILE", MODE_PRIVATE);
+        loadFragment(new HomeAdminFragment(), "HOME_FRAGMENT");
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
-                if(itemId == R.id.collegeHome)
-                {
-                    loadFragment(new HomeAdminFragment() , "HOME_FRAGMENT");
+                if (itemId == R.id.collegeHome) {
+                    loadFragment(new HomeAdminFragment(), "HOME_FRAGMENT");
 
-                }else if(itemId == R.id.collegeProfile)
-                {
-                    loadFragment(new ProfileAdminFragment() , "PROFILE_FRAGMENT");
-
-                }else if(itemId == R.id.collegeAffiliationForm)
-                {
+                } else if (itemId == R.id.collegeProfile) {
+                    loadFragment(new ProfileAdminFragment(), "PROFILE_FRAGMENT");
+                } else if (itemId == R.id.collegeAffiliationForm) {
                     loadFragment(new ApplyForAffiliationFragment(), "APPLY FOR AFFILIATION");
-                }else if(itemId == R.id.collegeShowStudents)
-                {
-
-                }else
-                {
+                } else if (itemId == R.id.collegeShowStudents) {
+                    loadFragment(new ShowStudentsFragment(), "COLLEGE STUDENT FOR SCHOLARSHIP");
+                } else if (itemId == R.id.collegeApplications) {
+                    loadFragment(new CollegeApplicationsFragment(), "COLLEGE APPLICATIONS FOR FELLOWSHIP");
+                } else {
                     sharedPreferences.edit().clear();
                     sharedPreferences.edit().apply();
-                    Intent intent = new Intent(Collage.this , LoginPage.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    Intent intent = new Intent(Collage.this, LoginPage.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }
+                drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
         });
     }
 
-    private void loadFragment(Fragment fragment , String tag) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.container , fragment , tag).addToBackStack(null).commit();
+    private void loadFragment(Fragment fragment, String tag) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment, tag).addToBackStack(null).commit();
     }
 
     @Override
     public void onBackPressed() {
 
-        if(drawerLayout.isDrawerOpen(GravityCompat.START))
-        {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        else
-        {
+        } else {
             super.onBackPressed();
         }
     }

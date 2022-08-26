@@ -37,7 +37,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Student Id"
-                    android:textSize="16dp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -55,7 +55,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
                     android:text="Status"
-                    android:textSize="16dp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/stuStatus"
@@ -65,7 +65,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
                     android:text="Pending"
-                    android:textSize="16dp" />
+                    android:textSize="16sp" />
 
 
             </LinearLayout>

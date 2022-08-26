@@ -27,14 +27,11 @@ import retrofit2.Response;
  */
 public class ApplyForAffiliationFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     EditText clgName, clgEmail, clgContact, clgAddress, clgId, clgDirector, clgCity, clgState;
     Button save;
     String token;
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -42,15 +39,6 @@ public class ApplyForAffiliationFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ApplyForAffiliationFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static ApplyForAffiliationFragment newInstance(String param1, String param2) {
         ApplyForAffiliationFragment fragment = new ApplyForAffiliationFragment();
         Bundle args = new Bundle();
@@ -123,6 +111,9 @@ public class ApplyForAffiliationFragment extends Fragment {
             public void onResponse(Call<ApplyAffiliationFormModel> call, Response<ApplyAffiliationFormModel> response) {
                 if (response.isSuccessful()) {
                     Log.e("AFILLIATION DATA SAVING", "SUCESS");
+                    // GO on uploading data fragment
+//                    loadFragment();
+                    // GO to Applications section
                     loadFragment();
                 }
                 else
@@ -136,8 +127,7 @@ public class ApplyForAffiliationFragment extends Fragment {
             }
         });
     }
-
     private void loadFragment() {
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, new UploadAffiliationRelatedFileFragment()).commit();
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, new CollegeApplicationsFragment()).commit();
     }
 }

@@ -38,7 +38,6 @@ public class CollegeStudentDataViewAdapter extends RecyclerView.Adapter<CollegeS
             holder.status.setText("Rejected");
         else
             holder.status.setText("Scholared");
-
     }
 
     @Override

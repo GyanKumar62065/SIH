@@ -30,9 +30,8 @@ public class NonApprovedStudentScholarshipDataFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     TextView scholarshipDetais;
     Button downLoadReletedDocument, approveForm, rejectForm;
-    String token;
     ScholarshipStudentFormModel details = new ScholarshipStudentFormModel();
-    String userId;
+    String userId, userRole, token;
     private String applicationId;
 
     public NonApprovedStudentScholarshipDataFragment() {
@@ -62,35 +61,74 @@ public class NonApprovedStudentScholarshipDataFragment extends Fragment {
 
         token = getActivity().getSharedPreferences("TOKEN_FILE", Context.MODE_PRIVATE).getString("TOKEN_KEY", "");
         userId = getActivity().getSharedPreferences("TOKEN_FILE", Context.MODE_PRIVATE).getString("USER_ID", "");
+        userRole = getActivity().getSharedPreferences("TOKEN_FILE", Context.MODE_PRIVATE).getString("USER_ROLE", "");
         scholarshipDetais = view.findViewById(R.id.setNonApprovedScholarshipStudentData);
         downLoadReletedDocument = view.findViewById(R.id.setNonApprovedScholarshipStudentReletedDocuments);
-        approveForm = view.findViewById(R.id.setNonApprovedScholarshipStudentApprove);
-        rejectForm = view.findViewById(R.id.setNonApprovedScholarshipStudentReject);
+        if (userRole.equals("student")) {
+            getScholarshipDataByApplicationId(applicationId);
+            approveForm.setVisibility(View.GONE);
+//            Now we are useing this button as Delete Scholarship Form By Student
+            rejectForm.setText("Drop Application");
+            rejectForm.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dropApplication();
+                }
+            });
 
-        downLoadReletedDocument.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                downloadReletedDoucument();
-            }
-        });
+        } else {
 
-        approveForm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                approveScholarship();
-            }
-        });
+            approveForm = view.findViewById(R.id.setNonApprovedScholarshipStudentApprove);
+            rejectForm = view.findViewById(R.id.setNonApprovedScholarshipStudentReject);
 
-        rejectForm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rejectScholarship();
-            }
-        });
+            downLoadReletedDocument.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    downloadReletedDoucument();
+                }
+            });
 
-        getScholarshipDataByApplicationId(applicationId);
+            approveForm.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    approveScholarship();
+                }
+            });
+
+            rejectForm.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    rejectScholarship();
+                }
+            });
+
+            getScholarshipDataByApplicationId(applicationId);
+        }
 
         return view;
+    }
+
+    private void dropApplication() {
+        deleteScholarshipForm();
+    }
+
+    private void deleteScholarshipForm() {
+        Call<ScholarshipStudentFormModel> call = Repositry.getInstance().getCommentsService().deleteScholarshipForm(applicationId, "Bearer " + token);
+        call.enqueue(new Callback<ScholarshipStudentFormModel>() {
+            @Override
+            public void onResponse(Call<ScholarshipStudentFormModel> call, Response<ScholarshipStudentFormModel> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(getActivity(), "Form Dropped", Toast.LENGTH_SHORT).show();
+                    if (getActivity().getSupportFragmentManager().getBackStackEntryCount() > 0)
+                        getActivity().getSupportFragmentManager().popBackStackImmediate();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ScholarshipStudentFormModel> call, Throwable t) {
+
+            }
+        });
     }
 
     private void rejectScholarship() {

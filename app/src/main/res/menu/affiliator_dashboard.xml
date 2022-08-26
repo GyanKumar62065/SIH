@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home_affiliator"
+        android:title="Home" />
+    <item
+        android:id="@+id/affiliatorDashboard"
+        android:title="Dashboard" />
+    <item
+        android:id="@+id/fellowship"
+        android:title="Fellowship" />
+    <item
+        android:id="@+id/meetingAffiliator"
+        android:title="Meeting" />
+    <item
+        android:id="@+id/affiliatorLogOut"
+        android:title="Logout" />
+
+</menu>

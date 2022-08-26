@@ -2,6 +2,7 @@ package com.example.sih.Network;
 
 import com.example.sih.model.ApplyAffiliationFormModel;
 import com.example.sih.model.EmployeeRegister;
+import com.example.sih.model.FellowshipModel;
 import com.example.sih.model.LoginRequest;
 import com.example.sih.model.RegistationRequest;
 import com.example.sih.model.ScholarShipFormModel;
@@ -76,6 +77,15 @@ public interface Service {
 
     @PATCH("scholarshipform/{userId}/{applicationId}")
     Call<ScholarshipStudentFormModel>setStudentRejected(@Path("userId") String userId , @Path("applicationId") String applicationId, @Header("Authorization") String auth);
+
+    @DELETE("scholarshipform/{applicationId}")
+    Call<ScholarshipStudentFormModel>deleteScholarshipForm(@Path("applicationId") String applicationId ,@Header("Authorization") String authentication );
+
+    @GET("showNonAffiliatedColleges")
+    Call<List<FellowshipModel>>getAllPendingFellowshipFroms(@Header("Authorization") String authentication);
+
+    @GET("showAffiliatedColleges")
+    Call<List<FellowshipModel>>getAllApprovedFellowshipFroms(@Header("Authorization") String authentication);
 
 
 }
