@@ -134,6 +134,7 @@ public class LoginPage extends AppCompatActivity {
             @Override
             public void onFailure(Call<UsersResponse> call, Throwable t) {
                 Toast.makeText(LoginPage.this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e("EXCEPTION " , "" + t.toString());
             }
         });
     }
