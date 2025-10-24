@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Admin.CreateEmpolyeeFormFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/affiliatorFormHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="Create New Affiliator"
+                android:textSize="25sp"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/affiliatorNameField"
+                android:layout_width="309dp"
+                android:layout_height="51dp"
+                android:layout_marginTop="40dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textColor="@color/black"
+                android:hint="Name"
+                app:layout_constraintEnd_toEndOf="@id/affiliatorFormHeading"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/affiliatorFormHeading"
+                app:layout_constraintTop_toBottomOf="@+id/affiliatorFormHeading" />
+
+            <EditText
+                android:id="@+id/affiliatorEmailField"
+                android:layout_width="309dp"
+                android:layout_height="51dp"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/black"
+                android:hint="Email"
+                app:layout_constraintEnd_toEndOf="@id/affiliatorNameField"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/affiliatorNameField"
+                app:layout_constraintTop_toBottomOf="@+id/affiliatorNameField" />
+
+            <EditText
+                android:id="@+id/affiliatorContactNumberFiled"
+                android:layout_width="309dp"
+                android:layout_height="51dp"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:hint="Contact No"
+                app:layout_constraintEnd_toEndOf="@id/affiliatorEmailField"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/affiliatorEmailField"
+                app:layout_constraintTop_toBottomOf="@+id/affiliatorEmailField" />
+
+            <EditText
+                android:id="@+id/affiliatorAddressLine1Filed"
+                android:layout_width="309dp"
+                android:layout_height="51dp"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:textColor="@color/black"
+                android:inputType="textLongMessage"
+                android:hint="Address Line 1"
+                app:layout_constraintEnd_toEndOf="@id/affiliatorContactNumberFiled"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/affiliatorContactNumberFiled"
+                app:layout_constraintTop_toBottomOf="@+id/affiliatorContactNumberFiled" />
+
+            <EditText
+                android:id="@+id/affiliatorAddressLine2Filed"
+                android:layout_width="309dp"
+                android:layout_height="51dp"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:textColor="@color/black"
+                android:inputType="textLongMessage"
+                android:hint="Address Line 2"
+                app:layout_constraintEnd_toEndOf="@id/affiliatorAddressLine1Filed"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/affiliatorAddressLine1Filed"
+                app:layout_constraintTop_toBottomOf="@+id/affiliatorAddressLine1Filed" />
+
+
+            <EditText
+                android:id="@+id/affiliatorPasswordFiled"
+                android:layout_width="309dp"
+                android:layout_height="51dp"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:textColor="@color/black"
+                android:inputType="textPassword"
+                android:hint="Password"
+                app:layout_constraintEnd_toEndOf="@id/affiliatorAddressLine2Filed"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/affiliatorAddressLine2Filed"
+                app:layout_constraintTop_toBottomOf="@+id/affiliatorAddressLine2Filed"
+                />
+
+            <Button
+                android:id="@+id/affiliatorCreateButton"
+                android:layout_width="309dp"
+                android:layout_height="51dp"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:textColor="@color/black"
+                android:text="Create"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="@id/affiliatorPasswordFiled"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/affiliatorPasswordFiled"
+                app:layout_constraintTop_toBottomOf="@+id/affiliatorPasswordFiled"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+</LinearLayout>

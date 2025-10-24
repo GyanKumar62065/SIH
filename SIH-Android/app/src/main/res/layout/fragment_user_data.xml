@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/teal_700"
+    tools:context=".Admin.ProfileAdminFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            >
+
+            <ImageView
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/employeeImg"
+                android:layout_width="364dp"
+                android:layout_height="116dp"
+                android:src="@drawable/ic_baseline_person_24" />
+
+            <TextView
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/employeeDataName"
+                android:layout_width="366dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="TextView"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+
+                <TextView
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/empDetails"
+                    android:paddingLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textSize="18sp"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
+    </ScrollView>
+
+</FrameLayout>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".register.StudentRegister">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="330dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="44dp"
+                    android:text="College Registration"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.496"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/collegeName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="36dp"
+                    android:ems="10"
+                    android:hint="Name"
+                    android:inputType="textPersonName"
+                    app:layout_constraintEnd_toEndOf="@+id/textView5"
+                    app:layout_constraintStart_toStartOf="@+id/textView5"
+                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+                <EditText
+                    android:id="@+id/collegeEmail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="36dp"
+                    android:ems="10"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    app:layout_constraintEnd_toEndOf="@+id/collegeName"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/collegeName"
+                    app:layout_constraintTop_toBottomOf="@+id/collegeName" />
+
+                <EditText
+                    android:id="@+id/collegeContact"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="36dp"
+                    android:ems="10"
+                    android:hint="Contact Number"
+                    android:inputType="number"
+                    app:layout_constraintEnd_toEndOf="@+id/collegeEmail"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/collegeEmail"
+                    app:layout_constraintTop_toBottomOf="@+id/collegeEmail" />
+
+                <EditText
+                    android:id="@+id/collegeAddressLine1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="36dp"
+                    android:ems="10"
+                    android:hint="Address Line 1"
+                    android:inputType="textPersonName"
+                    app:layout_constraintEnd_toEndOf="@+id/collegeContact"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/collegeContact"
+                    app:layout_constraintTop_toBottomOf="@+id/collegeContact" />
+
+                <EditText
+                    android:id="@+id/collegeAddressLine2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="36dp"
+                    android:ems="10"
+                    android:hint="Address Line 2"
+                    android:inputType="textPersonName"
+                    app:layout_constraintEnd_toEndOf="@+id/collegeAddressLine1"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/collegeAddressLine1"
+                    app:layout_constraintTop_toBottomOf="@+id/collegeAddressLine1" />
+
+                <EditText
+                    android:id="@+id/collegePassword"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="36dp"
+                    android:ems="10"
+                    android:hint="Passwod"
+                    android:inputType="textPassword"
+                    app:layout_constraintEnd_toEndOf="@+id/collegeAddressLine2"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/collegeAddressLine2"
+                    app:layout_constraintTop_toBottomOf="@+id/collegeAddressLine2" />
+
+                <Button
+                    android:id="@+id/collegeRegister"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="36dp"
+                    android:text="Register"
+                    app:layout_constraintEnd_toEndOf="@+id/collegePassword"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/collegePassword"
+                    app:layout_constraintTop_toBottomOf="@+id/collegePassword" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/collegeHome"
+        android:title="Home"
+        />
+    <item android:id="@+id/collegeProfile"
+        android:title="Profile"
+        />
+    <item android:id="@+id/collegeAffiliationForm"
+        android:title="Affiliation"
+        />
+
+    <item android:id="@+id/collegeApplications"
+        android:title="Applications"
+        />
+    <item android:id="@+id/collegeShowStudents"
+        android:title="Student Scholarships"
+        />
+
+    <item android:id="@+id/collegeLogout"
+        android:title="Logout"
+        />
+
+
+
+</menu>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Admin.CreateEmpolyeeFormFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/employeeFormHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="Create New Employee"
+                android:textSize="25sp"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/employeeNameField"
+                android:layout_width="309dp"
+                android:layout_height="51dp"
+                android:layout_marginTop="40dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textColor="@color/black"
+                android:hint="Name"
+                app:layout_constraintEnd_toEndOf="@id/employeeFormHeading"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/employeeFormHeading"
+                app:layout_constraintTop_toBottomOf="@+id/employeeFormHeading" />
+
+            <EditText
+                android:id="@+id/employeeEmailField"
+                android:layout_width="309dp"
+                android:layout_height="51dp"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/black"
+                android:hint="Email"
+                app:layout_constraintEnd_toEndOf="@id/employeeNameField"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/employeeNameField"
+                app:layout_constraintTop_toBottomOf="@+id/employeeNameField" />
+
+            <EditText
+                android:id="@+id/employeeContactNumberFiled"
+                android:layout_width="309dp"
+                android:layout_height="51dp"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:hint="Contact No"
+                app:layout_constraintEnd_toEndOf="@id/employeeEmailField"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/employeeEmailField"
+                app:layout_constraintTop_toBottomOf="@+id/employeeEmailField" />
+
+            <EditText
+                android:id="@+id/employeeAddressLine1Filed"
+                android:layout_width="309dp"
+                android:layout_height="51dp"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:textColor="@color/black"
+                android:inputType="textLongMessage"
+                android:hint="Address Line 1"
+                app:layout_constraintEnd_toEndOf="@id/employeeContactNumberFiled"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/employeeContactNumberFiled"
+                app:layout_constraintTop_toBottomOf="@+id/employeeContactNumberFiled" />
+
+            <EditText
+                android:id="@+id/employeeAddressLine2Filed"
+                android:layout_width="309dp"
+                android:layout_height="51dp"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:textColor="@color/black"
+                android:inputType="textLongMessage"
+                android:hint="Address Line 2"
+                app:layout_constraintEnd_toEndOf="@id/employeeAddressLine1Filed"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/employeeAddressLine1Filed"
+                app:layout_constraintTop_toBottomOf="@+id/employeeAddressLine1Filed" />
+
+
+            <EditText
+                android:id="@+id/employeePasswordFiled"
+                android:layout_width="309dp"
+                android:layout_height="51dp"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:textColor="@color/black"
+                android:inputType="textPassword"
+                android:hint="Password"
+                app:layout_constraintEnd_toEndOf="@id/employeeAddressLine2Filed"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/employeeAddressLine2Filed"
+                app:layout_constraintTop_toBottomOf="@+id/employeeAddressLine2Filed"
+                />
+
+            <Button
+                android:id="@+id/employeeCreateButton"
+                android:layout_width="309dp"
+                android:layout_height="51dp"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:textColor="@color/black"
+                android:text="Create"
+                app:layout_constraintEnd_toEndOf="@id/employeePasswordFiled"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/employeePasswordFiled"
+                app:layout_constraintTop_toBottomOf="@+id/employeePasswordFiled"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+</LinearLayout>

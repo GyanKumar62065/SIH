@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginEnd="2dp"
+    android:background="@drawable/main_page_bg"
+    tools:context=".LoginPage">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="123dp"
+                android:layout_marginTop="4dp"
+                android:contentDescription="Logo"
+                app:srcCompat="@drawable/ic_logo" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/custom_login_bg"
+                android:minHeight="48dp"
+                android:padding="5dp"
+                android:text="@string/welcome_to_aicte"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:textStyle="bold"
+
+                />
+
+            <EditText
+                android:id="@+id/userName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:autofillHints="usernameText"
+                android:background="@drawable/custom_login_bg"
+                android:ems="10"
+                android:hint="@string/username"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:paddingStart="20dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:autofillHints=""
+                android:background="@drawable/custom_login_bg"
+                android:ems="10"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:minHeight="48dp"
+                android:paddingStart="@dimen/paddingStart"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
+
+
+            <LinearLayout
+                android:id="@+id/llRobot"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_marginTop="28dp"
+                android:background="#C5BFBF"
+                app:layout_constraintEnd_toEndOf="@+id/password"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/password"
+                app:layout_constraintTop_toBottomOf="@+id/password">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="100"
+                    android:text="I'm Not Robot"
+                    android:textAlignment="center"
+                    android:textSize="24sp" />
+
+                <CheckBox
+                    android:id="@+id/checkBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="right"
+                    />
+
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/login_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_login_bg"
+                android:text="@string/login" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:onClick="studentRegister"
+                android:text="new student registation"
+                android:textAlignment="center"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:onClick="collegeRegister"
+                android:text="new college registation"
+                android:textAlignment="center"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
